@@ -27,5 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
       function enableButtons() {
         buttons.forEach(button => button.disabled = false);
       }
+     // Function to update the display element with the current expression
+     function updateDisplay() {
+        display.textContent = expression;
+      }
     
+      
      
