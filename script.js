@@ -15,3 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the last evaluated expression to an empty string
     let lastExpression = '';
   
+    // Function to disable all calculator buttons except the clear button
+    function disableButtons() {
+        buttons.forEach(button => {
+          // Disable all buttons unless it's the clear button
+          if (button !== clearButton) button.disabled = true;
+        });
+      }
+    
+      // Function to enable all calculator buttons
+      function enableButtons() {
+        buttons.forEach(button => button.disabled = false);
+      }
+    
+     
