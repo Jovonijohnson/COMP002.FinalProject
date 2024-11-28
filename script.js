@@ -1,24 +1,24 @@
-// This event listener ensures the script runs only after the full page content is loaded
+// This ensures the script runs only after the entire page content has loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded event fired');
   
-    // Cache the display element where expressions and results will be shown
+    // Get the display element where the expressions and results will be shown
     const display = document.getElementById('display');
     console.log('Display element:', display);
   
-    // Select all buttons that form part of the calculator
+    // Select all the buttons that are part of the calculator
     const buttons = document.querySelectorAll('.calculator-button');
     console.log('Calculator buttons:', buttons);
   
-    // Cache the clear button specifically for clearing the expression
+    // Get the clear button specifically for resetting the expression
     const clearButton = document.getElementById('button-clear');
     console.log('Clear button:', clearButton);
   
-    // Cache the equals button specifically for calculating the result
+    // Get the equals button specifically for calculating the result
     const equalsButton = document.getElementById('button-equals');
     console.log('Equals button:', equalsButton);
   
-    // Cache the element that shows the last expression and result after page refresh
+    // Get the element that shows the last expression and result after a page refresh
     const lastResultDisplay = document.getElementById('last-result-display');
     console.log('Last result display:', lastResultDisplay);
   
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to disable all calculator buttons except the clear button
     function disableButtons() {
       buttons.forEach(button => {
-        // Disable all buttons unless it's the clear button
+        // Disable all buttons except the clear button
         if (button !== clearButton) {
           button.disabled = true;
           console.log('Disabled button:', button.textContent);
@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Updated display:', expression);
     }
   
-    // Add event listener to each calculator button to handle clicks
+    // Add event listeners to each calculator button to handle clicks
     buttons.forEach(button => {
       button.addEventListener('click', () => {
-        // Retrieve the text content of the button, which represents its value
+        // Get the text content of the button, which represents its value
         const value = button.textContent;
         console.log('Button clicked:', value);
         
@@ -128,8 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     // Load the last expression from local storage when the page loads
-    document.addEventListener('DOMContentLoaded', () => {
-      lastResultDisplay.textContent = localStorage.getItem('lastExpression') || '';
-      console.log('Loaded last expression from local storage:', lastResultDisplay.textContent);
-    });
-  });
+    lastResultDisplay.textContent = localStorage.getItem('lastExpression') || '';
+    console.log('Loaded last expression from local storage:', lastResultDisplay.textContent);
+});
