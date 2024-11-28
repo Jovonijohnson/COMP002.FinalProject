@@ -83,3 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
     
+          // Prevent padding with extra zeroes, such as 00, 001
+          if (expression === '0') {
+            expression = '';
+          }
+        });
+      });
+    
+     
