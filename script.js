@@ -32,5 +32,54 @@ document.addEventListener('DOMContentLoaded', () => {
         display.textContent = expression;
       }
     
-      
-     
+      // Add event listener to each calculator button to handle clicks
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Retrieve the text content of the button, which represents its value
+          const value = button.textContent;
+          
+          // Logic to clear the current expression when the clear button is clicked
+          if (button === clearButton) {
+            // Reset the expression to an empty string
+            expression = '';
+            // Update the display to reflect the cleared expression
+            updateDisplay();
+            // Re-enable all buttons after clearing
+            enableButtons();
+            return;
+          }
+    
+          // Ensure the first input is a number, not an operator
+          if (expression === '' && isNaN(value)) {
+            return;
+          }
+    
+          // Append the button's value to the expression and update the display
+          if (button !== equalsButton) {
+            // Add the button value to the expression string
+            expression += value;
+            // Update the display element to show the current expression
+            updateDisplay();
+          }
+    
+          // Evaluate the expression when the equals button is clicked
+          if (button === equalsButton) {
+            try {
+              // Compute the result of the expression using eval
+              // Note: eval should be used carefully in real projects due to security risks
+              lastExpression = expression + ' = ' + eval(expression);
+              // Update the expression with the result of the evaluation
+              expression = eval(expression).toString();
+              // Update the display with the result
+              updateDisplay();
+              // Show the last evaluated expression and result
+              lastResultDisplay.textContent = lastExpression;
+              // Disable all buttons except the clear button after evaluation
+              disableButtons();
+            } catch (e) {
+              // In case of any errors during evaluation, show 'Error' on the display
+              expression = 'Error';
+              updateDisplay();
+            }
+          }
+    
