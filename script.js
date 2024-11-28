@@ -90,4 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     
+      // Save the last expression to local storage before the page unloads
+      window.addEventListener('beforeunload', () => {
+        localStorage.setItem('lastExpression', lastExpression);
+      });
+    
+      // Load the last expression from local storage when the page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        lastResultDisplay.textContent = localStorage.getItem('lastExpression') || '';
+      });
+    });
+    
      
